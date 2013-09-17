@@ -19,7 +19,7 @@ if ($user) {
 	    $user_profile = $facebook->api('/me'); //Get Facebook info
 	    checkUser($user_profile); //Add's user to DB if new user, always also updates friends list
   	} catch (FacebookApiException $e) {
-    	//echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
+    	echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
 	    $user = null;
   	}
 }	
@@ -31,7 +31,7 @@ if ($user) {
 	<head>
 		<meta charset="utf-8" name="apple-mobile-web-app-capable" content="yes"/>
 		<title>Song Snatch</title>
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="style2.css" type="text/css" media="screen">
 		<?php if ($user) { include 'header.php'; } ?>
 	</head>
 	
@@ -42,11 +42,8 @@ if ($user) {
 			</div>
 			<div id="signin">	
 				<?php if ($user) { ?>
-					<span id='myinfo'>
-						<img src='https://graph.facebook.com/<?=$user_profile['id']?>/picture'/>
-						<span><?=$user_profile['name']?></span>
-						<span>[<span data-bind="text: myPoints" class='blue'>34</span>] points</span>
-					</span>
+					<span>Pradyut Pokuri</span>
+					<img src='https://graph.facebook.com/<?=$user_profile['id']?>/picture'/>
 					<span id ="logout" onclick="javascript:signout()">Logout</span>
 				<?php } ?>
 			</div>
@@ -90,16 +87,8 @@ if ($user) {
  					
 				
 				</div>
-				
-				
 			</div>
-			<div id='feed'>
-				<span class='head'>Activity</span>
-				<ul id='feedlist' data-bind='template: {name: "activityTemplate", foreach: viewModel.activities}'>
-				
-				
-				</ul>
-			</div>
+			
 
 		</div>
 	</body>

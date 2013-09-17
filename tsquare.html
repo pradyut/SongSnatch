@@ -1,0 +1,36 @@
+<html>
+ 
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+<script type="text/javascript" src="http://easyxdm.net/current/easyXDM.debug.js"></script>
+<script type="text/javascript" src="http://easyxdm.net/current/json2.js"></script>
+<script type="text/javascript" src="js/TSquareAPI.js"></script>
+<script type="text/javascript">
+alert("Begin");
+TSquare.User.current(function(response){
+	alert(response.data);
+	$("#UserResult").html(response.data);
+});
+TSquare.Site.getAllSites(function(response){
+	alert(response.data);
+	$('#SiteResult').html(response.data);
+});
+TSquare.Membership.getAllMemberships(function(response){
+	alert(response.data);
+	$('#MembershipResult').html(response.data);
+});
+TSquare.Session.current(function(response){
+	alert(response.data);
+	$('#SessionResult').html(response.data);
+});
+alert("End");
+</script>
+ 
+<body>
+Current User: <div id='UserResult'></div>
+All Sites: <div id='SiteResult'></div>
+All Memberships: <div id='MembershipResult'></div>
+Current Session: <div id='SessionResult'></div>
+</body>
+ 
+</html>

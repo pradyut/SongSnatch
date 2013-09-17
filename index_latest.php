@@ -19,7 +19,7 @@ if ($user) {
 	    $user_profile = $facebook->api('/me'); //Get Facebook info
 	    checkUser($user_profile); //Add's user to DB if new user, always also updates friends list
   	} catch (FacebookApiException $e) {
-    	//echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
+    	echo '<pre>'.htmlspecialchars(print_r($e, true)).'</pre>';
 	    $user = null;
   	}
 }	
@@ -38,22 +38,17 @@ if ($user) {
 	<body>
 		<div id="header">
 			<div id="tagline">
-				<a href = "#"><img src = "img/snatch_logo.png"/></a>
+				<span>Snatch.</span> Play. Share.
+				
 			</div>
+			
 			<div id="signin">	
 				<?php if ($user) { ?>
-					<span id='myinfo'>
-						<img src='https://graph.facebook.com/<?=$user_profile['id']?>/picture'/>
-						<span><?=$user_profile['name']?></span>
-						<span>[<span data-bind="text: myPoints" class='blue'>34</span>] points</span>
-					</span>
-					<span id ="logout" onclick="javascript:signout()">Logout</span>
+					<span onclick="javascript:signout()">logout</span>
 				<?php } ?>
 			</div>
-
 		</div>
 		<div id='wrapper'>
-		<?php if ($user) { include 'player.php'; } ?>
 			<div id='content_wrap'>
 				<?php if ($user) { include 'content.php' ?>
 					
@@ -85,21 +80,12 @@ if ($user) {
 			        document.getElementById('fb-root').appendChild(e);
 			      }());
 			    </script>
-			    
-				<div id="content" data-bind="template:{name:function(){ return viewModel.currentPage().template() } , data: viewModel.dataObj}">
+				<div id="content" data-bind="template:{name:function(){ return viewModel.selectedLink().template() }}">
  					
 				
 				</div>
-				
-				
 			</div>
-			<div id='feed'>
-				<span class='head'>Activity</span>
-				<ul id='feedlist' data-bind='template: {name: "activityTemplate", foreach: viewModel.activities}'>
-				
-				
-				</ul>
-			</div>
+			<?php if ($user) { include 'player.php'; } ?>
 
 		</div>
 	</body>

@@ -162,7 +162,7 @@ locally first before running getID3(). Your code would look something
 like this:
 
 // Copy remote file locally to scan with getID3()
-$remotefilename = 'http://www.example.com/filename.mp3';
+$remotefilename = 'http://plugmeup.com/m/music/ti/bring_em_out.mp3';
 if ($fp_remote = fopen($remotefilename, 'rb')) {
     $localtempfilename = tempnam('/tmp', 'getID3');
     if ($fp_local = fopen($localtempfilename, 'wb')) {
